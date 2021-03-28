@@ -1,0 +1,36 @@
+.gridContainer{
+    display: flex;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
+    grid-template-rows: 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
+    margin: 10px;
+}
+
+.square{
+    border: 1px solid black;
+    width: 40px;
+    height: 40px;
+}
+
+.shipSquare{
+    background: blue;
+}
+
+.cpuShipSquare{
+    background: transparent;
+}
+
+.startBtn{
+    margin-top: 500px;
+}
+
+.hit{
+    background: orange;
+}
+
+.miss{
+    background: purple;
+}

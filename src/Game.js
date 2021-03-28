@@ -36,10 +36,9 @@ class Game {
             if(this.playerBoard[attack] === 'empty'){
                 this.playerBoard[attack] = 'missed';
             }
-            else{
+            else if(this.playerBoard[attack] === 'ship'){
                 this.playerBoard[attack] = 'hit';
                 this.newShip.hit(attack);
-                this.newShip.isSunk();
                 this.gameOver();
             }
         };

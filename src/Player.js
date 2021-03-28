@@ -15,19 +15,30 @@ class Player{
         this.player2Board = new Game([],[],"");
         this.player1Board.createGameBoard();
         this.player2Board.createGameBoard();
+        this.player1Board.placeShip(3,2);
+        this.player1Board.placeShip(13,3);
+        this.player1Board.placeShip(23,4);
+        
+        this.player2Board.placeShip(3,2);
+        this.player2Board.placeShip(13,3);
+        this.player2Board.placeShip(23,4);
+
     };
 
-    turnAction(){
+    turnAction(attack=""){
+
         if(this.player2Type === "CPU" && this.player2Turn === true){
             let targetSquare = Math.floor(Math.random()*100);
-            while(this.player1Board.playerBoard[targetSquare] !== "empty"){
+            while(this.player1Board.playerBoard[targetSquare] === "missed"){
                 targetSquare = Math.floor(Math.random()*100);
             }
+            console.log(targetSquare);
             this.player1Board.recieveAttack(targetSquare);
             this.player2Turn = false;
             this.player1Turn = true;
         }
         else{
+            this.player2Board.recieveAttack(attack);
             this.player1Turn = false;
             this.player2Turn = true;
         }
