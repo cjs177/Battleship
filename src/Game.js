@@ -39,8 +39,8 @@ class Game {
             else if(this.playerBoard[attack] === 'ship'){
                 this.playerBoard[attack] = 'hit';
                 this.newShip.hit(attack);
-                this.gameOver();
             }
+            this.gameOver();
         };
 
     //return (

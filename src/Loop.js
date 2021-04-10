@@ -1,95 +1,70 @@
 import style from "../src/css/style.css"
-import React, { useEffect, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import Ship from './Ship';
 import Game from './Game';
 import Player from './Player';
 
-const Loop = () => {
+let playGame = new Player(true,false,"human","CPU");
+playGame.playerSetUp();
 
-    let playGame = new Player(true,false,"human","CPU");
-    playGame.playerSetUp();
-        let grid = [];
-        let cpuGrid = [];
-        for(let i = 0; i < 100; i++){
-            if(playGame.player1Board.playerBoard[i] === "ship"){
-                grid.push(<div/>)
-            }
-            else{
-                grid.push(<div/>)
-            }
-            if(playGame.player2Board.playerBoard[i] === "ship"){
-                cpuGrid.push(<div className="square cpuShipSquare"/>)
-            }
-            else{
-                cpuGrid.push(<div className="square"/>)
-            }
-            }
+class Loop extends Component {
+constructor(props) {
+super(props);
 
-   const [humanGrid, sethumanGrid] = useState(grid);
-    const displayShips = (e) => {
-        e.preventDefault();
-        for(let i = 0; i < 100; i++){
-            if(playGame.player1Board.playerBoard[i] === "ship"){
-            }
-        }
-    };
-   const showHit = (e) =>{
-       e.preventDefault();
-       if(e.target.className === "square cpuShipSquare"){
+this.state = {
+    cpuBoard: playGame.player1Board.playerBoard,
+    playerBoard: playGame.player2Board.playerBoard
+
+    }
+}
+
+showHit = (e) =>{
+    e.preventDefault();
+    if(e.target.className === "square ship"){
         e.target.className = "square hit";
-        playGame.turnAction(e.target.parentNode.id);
-        cpuTurn();
-        for(let i = 0; i < 100; i++){
-            if(playGame.player1Board.playerBoard[i] === "hit"){
-
-            }
-        }
-        
-       }
-       else if(e.target.className === "square"){
+        playGame.turnAction(e.target.id);
+        playGame.turnAction();
+        this.setState({
+        cpuBoard: playGame.player1Board.playerBoard,
+        playerBoard: playGame.player2Board.playerBoard
+        }); 
+    }
+    else if(e.target.className === "square empty"){
         e.target.className = "square miss";
         playGame.turnAction(e.target.parentNode.id);
-        cpuTurn();
-        for(let i = 0; i < 100; i++){
-            if(playGame.player1Board.playerBoard[i] === "empty"){
-            }
-        }
-       }
-       
-       else
-       return;
-   };
-
-   const cpuTurn = () => {
-    playGame.turnAction();
-    for(let i = 0; i < 100; i++){
-        if(playGame.player1Board.playerBoard[i] === "missed"){
-            console.log(playGame.player1Board.playerBoard);  
-        }
+        playGame.turnAction();
+    this.setState({
+        cpuBoard: playGame.player1Board.playerBoard,
+        playerBoard: playGame.player2Board.playerBoard
+        });
     }
-   };
-   return(
-       <div className ="gridContainer">
+else
+return;
+};
+CpuChange = (props) =>{
+return <div className={`square ${props.whetherHit}`} >{''}</div>
+};
+render(){
+const { cpuBoard } = this.state;
+return(
+<div className ="gridContainer">
 <div className="grid">
-    {humanGrid.map((square, squareID) => {
-        {console.log(playGame.player1Board.playerBoard[squareID])};
-        return(
-            <div className={`${playGame.player1Board.playerBoard[squareID] === "ship"? 'square shipSquare':playGame.player1Board.playerBoard[squareID] === "missed"? 'square miss':'square'}`} id={squareID} >{`${playGame.player1Board.playerBoard[squareID] === "missed"? 'X':''}`}
-            </div>
-        );
-    })}
+{cpuBoard.map((square, squareID) => {
+return(
+<this.CpuChange whetherHit={square} className={square}/>
+);
+})}
 </div>
 <div className="grid">
-    {cpuGrid.map((cpuSquare, cpuSquareID) => {
-        return(
-            <div onClick={showHit} id={cpuSquareID}>{cpuSquare}</div>
-        );
-    })}
+{playGame.player2Board.playerBoard.map((cpuSquare, cpuSquareID) => {
+return(
+<div className={`square ${cpuSquare}`} onClick={this.showHit} id={cpuSquareID}>{''}</div>
+);
+})}
 </div>
-<button className = "startBtn" id={displayShips}>Start</button>
 </div>
-   );
-
+);
+}
 };
 
 export default Loop;

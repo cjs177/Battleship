@@ -1,4 +1,5 @@
 import Loop from './Loop.js';
+import Game from './Game.js';
 import React from 'react';
 
 function App() {

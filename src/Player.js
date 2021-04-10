@@ -25,14 +25,16 @@ class Player{
 
     };
 
-    turnAction(attack=""){
 
+    turnAction(attack=""){
         if(this.player2Type === "CPU" && this.player2Turn === true){
             let targetSquare = Math.floor(Math.random()*100);
-            while(this.player1Board.playerBoard[targetSquare] === "missed"){
+            console.log(`first value:${targetSquare}`)
+            while(this.player1Board.playerBoard[targetSquare] === "missed" || this.player1Board.playerBoard[targetSquare] === "hit"){
                 targetSquare = Math.floor(Math.random()*100);
+                console.log(`second value:${targetSquare}`)
             }
-            console.log(targetSquare);
+            console.log(`third value:${targetSquare}`)
             this.player1Board.recieveAttack(targetSquare);
             this.player2Turn = false;
             this.player1Turn = true;
