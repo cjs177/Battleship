@@ -1,8 +1,28 @@
+*{
+    background: rgb(69, 122, 138);
+}
+#title{
+    text-align: center;
+}
+
 .gridContainer{
     display: flex;
+    margin-left: 28vw;
 }
 
 .grid{
+    display: grid;
+    /*display: grid;*/
+    grid-template-columns: 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
+    grid-template-rows: 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
+    margin: 10px;
+}
+
+.gridHidden{
+    display: none;
+}
+
+.gridVisible{
     display: grid;
     grid-template-columns: 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
     grid-template-rows: 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
@@ -20,11 +40,77 @@
 }
 
 .cpuShipSquare{
-    background: transparent;
+
+}
+
+/*.startBtn{
+    margin-top: 500px;
+}*/
+
+.formStyle{
+    /*display: grid;
+    grid-template-columns: 50px 50px;*/
+    margin-left: 120px;
+    margin-top: 10px;
+}
+.alignmentBtns{
+    display: flex;
+    grid-template-columns: 50px 50px;
+}
+
+.numBtns{
+    display: flex;
+    margin: 0;
+}
+
+input[type="number"]{
+    width: 50px;
+}
+
+input[type="radio"]{
+    margin-right: 6px;
+}
+
+label{
+    margin-right: 10px;
+}
+
+.btns{
+    display: flex;
+    align-content: flex-start;
+}
+
+.shipBtn{
+    padding: 10px 20px 5px 20px;
+    margin: 2px;
+    font-size: 15px;
+    text-align: center;
+    background: grey;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
 }
 
 .startBtn{
-    margin-top: 500px;
+    padding: 10px 20px 5px 20px;
+    margin: 2px;
+    font-size: 15px;
+    text-align: center;
+    background: grey;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+}
+
+.resetBtn{
+    padding: 20px 50px;
+    height: 50%;
+    font-size: 15px;
+    text-align: center;
+    background: grey;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
 }
 
 .hit{
@@ -37,4 +123,8 @@
 
 .missed{
     background: purple;
+}
+
+.empty{
+    background: rgb(69, 122, 138);
 }
